@@ -1,0 +1,6 @@
+# Site estático — sem etapa de build.
+# Deploy (da pasta MOTION DESIGN):
+#   npx netlify deploy --prod --no-build --dir copa-baba-dos-coroas --site bf81b1ba-a2d9-42fc-ba61-65338a67620d
+[build]
+  command = "echo 'site estatico, sem build'"
+  publish = "."

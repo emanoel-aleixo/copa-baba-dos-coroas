@@ -1,0 +1,944 @@
+/* ============================================================
+   II COPA BABA DOS COROAS — identidade visual
+   Paleta extraída do escudo: grená + azul (blaugrana), ouro e
+   vermelho-coroa sobre fundo escuro. Mobile-first, cara de app.
+   ============================================================ */
+
+:root {
+  --grena: #7a1631;
+  --grena-vivo: #a50044;
+  --azul: #004d98;
+  --azul-vivo: #1266c9;
+  --ouro: #d9a62b;
+  --ouro-claro: #f5c84c;
+  --coroa: #d50032;
+  --verde-copa: #1f7a3d;
+  --marinho: #0d2038;
+  --fundo: #0b101c;
+  --fundo-2: #141726;
+  --card: #1a1e30;
+  --card-2: #232841;
+  --linha: rgba(255, 255, 255, 0.08);
+  --texto: #f2f3f7;
+  --texto-2: #9aa0b5;
+  --verde: #2ecc71;
+  --amarelo: #f1c40f;
+  --vermelho: #e74c3c;
+  --radius: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(217, 166, 43, 0.14), transparent 60%),
+    radial-gradient(1000px 500px at 10% 10%, rgba(31, 122, 61, 0.2), transparent 55%),
+    radial-gradient(900px 500px at 50% 40%, rgba(13, 32, 55, 0.6), transparent 70%),
+    var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 16px 96px;
+  position: relative;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 10px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(var(--fundo) 75%, transparent);
+}
+
+.topo .escudo {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: linear-gradient(135deg, var(--grena-vivo), var(--azul));
+  border: 2px solid var(--ouro);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.topo .titulos { line-height: 1.05; }
+.topo .titulos .assoc { color: var(--ouro-claro); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; }
+.topo .titulos h1 { font-size: 26px; }
+.topo .titulos h1 .ii { color: var(--ouro); }
+
+.selo-tema {
+  margin-left: auto;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  border: 1px solid var(--ouro-claro);
+  color: #123c22;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---------- Seções / navegação ---------- */
+.secao { display: none; animation: entrar 0.35s ease both; }
+.secao.ativa { display: block; }
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav-inferior {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  background: rgba(18, 21, 35, 0.92);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--linha);
+  z-index: 30;
+  padding: 6px 4px calc(8px + env(safe-area-inset-bottom));
+}
+
+.nav-inferior button {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  color: var(--texto-2);
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 0;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: color 0.2s;
+}
+
+.nav-inferior button .ico { font-size: 21px; line-height: 1; }
+.nav-inferior button[data-secao="patro"] { flex: 1.5; }
+.nav-inferior button.ativa { color: var(--ouro-claro); }
+.nav-inferior button.ativa .ico { transform: translateY(-2px); transition: transform 0.2s; }
+
+/* ---------- Cards genéricos ---------- */
+.card {
+  background: linear-gradient(160deg, var(--card), var(--fundo-2));
+  border: 1px solid var(--linha);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.titulo-secao {
+  font-size: 30px;
+  margin: 18px 0 4px;
+}
+.titulo-secao .destaque { color: var(--ouro); }
+.subtitulo { color: var(--texto-2); font-size: 13px; margin-bottom: 16px; }
+
+.chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ouro-claro);
+  background: rgba(217, 166, 43, 0.12);
+  border: 1px solid rgba(217, 166, 43, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* ---------- Hero / contagem ---------- */
+.hero {
+  background:
+    radial-gradient(400px 200px at 50% -20%, rgba(245, 200, 76, 0.28), transparent 70%),
+    linear-gradient(160deg, rgba(13, 32, 55, 0.96), rgba(9, 22, 40, 0.96)),
+    repeating-linear-gradient(90deg, transparent 0 34px, rgba(255,255,255,0.05) 34px 68px);
+  border: 2px solid var(--ouro);
+  box-shadow: 0 10px 40px rgba(217, 166, 43, 0.18), inset 0 0 60px rgba(31, 122, 61, 0.15);
+  border-radius: 22px;
+  padding: 24px 18px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.hero .coroa-mascote { font-size: 44px; }
+.hero h2 { font-size: 40px; line-height: 0.95; margin: 6px 0 2px; }
+.hero h2 .ouro { color: var(--ouro-claro); }
+.hero .local { color: rgba(255, 255, 255, 0.85); font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; }
+
+.contagem {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.contagem .bloco {
+  background: rgba(10, 12, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  min-width: 64px;
+  padding: 10px 6px 8px;
+}
+
+.contagem .bloco .num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--ouro-claro); line-height: 1; display: inline-block; }
+.contagem .bloco .num.rolou { animation: rolar 0.45s ease; }
+
+@keyframes rolar {
+  from { transform: translateY(-45%); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.contagem .bloco .rot { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.7); }
+
+/* ---------- Jogo (card de partida) ---------- */
+.jogo {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 12px;
+  background: var(--card);
+  border: 1px solid var(--linha);
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+.jogo .time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.jogo .time .band { font-size: 30px; }
+
+.jogo .placar {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ouro-claro);
+}
+
+.jogo .placar .x { color: var(--texto-2); font-size: 18px; }
+.jogo .placar.futuro { font-size: 15px; color: var(--texto-2); flex-direction: column; gap: 0; }
+.jogo .placar.futuro .hora { font-size: 22px; color: var(--texto); }
+
+.jogo-meta {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--texto-2);
+  border-top: 1px dashed var(--linha);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.rodada-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 10px;
+  color: var(--ouro-claro);
+  font-size: 20px;
+}
+.rodada-titulo::after { content: ''; flex: 1; height: 1px; background: var(--linha); }
+
+/* ---------- Abas ---------- */
+.abas {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin: 14px 0 6px;
+  scrollbar-width: none;
+}
+.abas::-webkit-scrollbar { display: none; }
+
+.abas button {
+  background: var(--card);
+  border: 1px solid var(--linha);
+  color: var(--texto-2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.abas button.ativa {
+  background: linear-gradient(135deg, var(--verde-copa), var(--marinho));
+  border-color: var(--ouro);
+  color: #fff;
+}
+
+/* ---------- Tabelas ---------- */
+.tabela { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tabela th {
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texto-2);
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--linha);
+}
+.tabela th:first-child, .tabela td:first-child { text-align: left; }
+.tabela td { padding: 10px 4px; text-align: center; border-bottom: 1px solid var(--linha); }
+.tabela tr:last-child td { border-bottom: none; }
+.tabela .time-cel { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.tabela .pos { color: var(--ouro); font-family: 'Bebas Neue', sans-serif; font-size: 16px; width: 18px; display: inline-block; }
+.tabela .pts { font-weight: 800; color: var(--ouro-claro); }
+.classificado td:first-child { box-shadow: inset 3px 0 0 var(--verde); }
+.zona-final td:first-child { box-shadow: inset 3px 0 0 var(--verde); }
+.zona-bronze td:first-child { box-shadow: inset 3px 0 0 var(--amarelo); }
+.zona-eliminado td:first-child { box-shadow: inset 3px 0 0 var(--vermelho); }
+
+.legenda-zonas p { font-size: 12px; color: var(--texto-2); line-height: 2; }
+.legenda-zonas b { color: var(--texto); }
+
+.folga {
+  font-size: 12px;
+  color: var(--texto-2);
+  background: var(--card);
+  border: 1px dashed var(--linha);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Seleções ---------- */
+.grade-selecoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.card-selecao {
+  border: 1px solid var(--linha);
+  border-radius: 18px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.2s;
+  background: linear-gradient(160deg, var(--card), var(--fundo-2));
+  position: relative;
+  overflow: hidden;
+}
+
+.card-selecao::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--faixa, linear-gradient(90deg, var(--grena-vivo), var(--azul)));
+}
+
+.card-selecao:active { transform: scale(0.97); }
+.card-selecao .band { font-size: 42px; }
+.card-selecao h3 { font-size: 22px; margin-top: 6px; }
+.card-selecao .grupo { font-size: 11px; color: var(--texto-2); display: inline-block; margin-top: 2px; }
+.card-selecao .grupo.confirmada { color: var(--verde); font-weight: 700; }
+.card-selecao .grupo.pendente { color: var(--texto-2); }
+.card-selecao.vaga { opacity: 0.72; border-style: dashed; }
+.card-selecao.vaga .band { filter: grayscale(0.3); }
+
+/* Detalhe da seleção */
+.detalhe-selecao .voltar {
+  background: none;
+  border: none;
+  color: var(--ouro-claro);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.banner-selecao {
+  border-radius: 20px;
+  padding: 24px 18px;
+  text-align: center;
+  border: 1px solid var(--linha);
+  margin-bottom: 14px;
+}
+
+.banner-selecao .band { font-size: 56px; }
+.banner-selecao h2 { font-size: 36px; }
+
+.lista-elenco { list-style: none; }
+.lista-elenco li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--linha);
+  font-size: 14px;
+}
+.lista-elenco li:last-child { border-bottom: none; }
+
+.lista-elenco .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--ouro);
+  width: 26px;
+  text-align: center;
+}
+
+.lista-elenco .pos-tag {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--texto-2);
+  border: 1px solid var(--linha);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.stats-mini { display: flex; gap: 10px; margin: 14px 0; }
+.stats-mini .stat {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  text-align: center;
+  padding: 12px 4px;
+}
+.stats-mini .stat .v { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--ouro-claro); }
+.stats-mini .stat .r { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--texto-2); }
+
+/* ---------- Álbum ---------- */
+.album-progresso {
+  background: linear-gradient(135deg, rgba(217,166,43,0.15), rgba(165,0,68,0.15));
+  border: 1px solid rgba(217, 166, 43, 0.4);
+}
+
+.barra-prog { height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; margin-top: 10px; }
+.barra-prog .preenchido { height: 100%; background: linear-gradient(90deg, var(--ouro), var(--ouro-claro)); border-radius: 999px; transition: width 0.6s ease; }
+
+.btn-pacote {
+  width: 100%;
+  background: linear-gradient(135deg, var(--coroa), var(--grena-vivo));
+  border: 2px solid var(--ouro);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.06em;
+  padding: 16px;
+  border-radius: 18px;
+  cursor: pointer;
+  margin: 6px 0 18px;
+  box-shadow: 0 8px 24px rgba(213, 0, 50, 0.35);
+  transition: transform 0.15s;
+}
+.btn-pacote:active { transform: scale(0.97); }
+.btn-pacote:disabled { filter: grayscale(0.8); opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+
+.grade-figurinhas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.figurinha {
+  aspect-ratio: 3 / 4;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  padding: 4px;
+  border: 1px solid var(--linha);
+  background: var(--fundo-2);
+  color: var(--texto-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.figurinha.colada {
+  background: linear-gradient(160deg, var(--card-2), var(--fundo-2));
+  border: 1px solid var(--ouro);
+  color: var(--texto);
+  animation: brilho 0.6s ease;
+}
+
+@keyframes brilho {
+  0% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0); }
+}
+
+.figurinha.colada::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.18) 45%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Figurinha RARA (artilheiros): dourada com brilho holográfico */
+.figurinha.colada.rara {
+  border: 1px solid var(--ouro-claro);
+  box-shadow: 0 0 14px rgba(245, 200, 76, 0.4);
+  background: linear-gradient(160deg, #33290f, #1a1e30);
+}
+
+.figurinha.colada.rara::after {
+  background: linear-gradient(115deg,
+    transparent 15%,
+    rgba(245, 200, 76, 0.4) 35%,
+    rgba(140, 220, 255, 0.28) 48%,
+    rgba(245, 130, 200, 0.22) 60%,
+    transparent 85%);
+  background-size: 260% 260%;
+  animation: holografico 2.8s linear infinite;
+}
+
+@keyframes holografico {
+  0% { background-position: 120% 0; }
+  100% { background-position: -20% 100%; }
+}
+
+.selo-rara {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  color: #2b1d00;
+  padding: 2px 5px;
+  border-radius: 999px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.figurinha .rosto { font-size: 22px; }
+.figurinha .interroga { font-size: 26px; opacity: 0.35; }
+.figurinha .rep {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: var(--coroa);
+  color: #fff;
+  font-size: 9px;
+  border-radius: 999px;
+  padding: 1px 5px;
+}
+
+.pacote-aberto {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.pacote-aberto .figurinha { width: 84px; animation: brilho 0.7s ease both; }
+.pacote-aberto .figurinha:nth-child(2) { animation-delay: 0.25s; }
+.pacote-aberto .figurinha:nth-child(3) { animation-delay: 0.5s; }
+
+/* ---------- Fotos (cadeado) ---------- */
+.grade-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.foto {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--linha);
+  cursor: pointer;
+  background: linear-gradient(160deg, var(--azul), var(--grena));
+}
+
+.foto .simulada {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+}
+
+.foto .img-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Prévia bloqueada: foto visível, só um leve borrão + marca d'água
+   (modelo Fotop/Banlek — o comprador vê o que está levando) */
+.foto.trancada .simulada,
+.foto.trancada .img-foto { filter: blur(2.5px) brightness(0.8); }
+
+.marca-dagua {
+  position: absolute;
+  inset: -40%;
+  transform: rotate(-25deg);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 2.6;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  word-break: break-word;
+  pointer-events: none;
+  z-index: 2;
+  user-select: none;
+}
+
+.badge-cadeado {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 3px 7px;
+}
+
+.badge-gratis {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: var(--verde);
+  color: #06280f;
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+
+.rodape-foto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  font-size: 9px;
+  padding: 16px 6px 5px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.88));
+  z-index: 3;
+}
+
+.rodape-foto .preco {
+  font-weight: 800;
+  background: var(--ouro);
+  color: #2b1d00;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Modal de ampliação da foto */
+.modal-foto {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 7, 12, 0.88);
+  backdrop-filter: blur(6px);
+}
+.modal-foto.aberto { display: flex; animation: entrar 0.25s ease both; }
+
+.modal-conteudo {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border: 1px solid var(--linha);
+  border-radius: 20px;
+  padding: 14px;
+  text-align: center;
+}
+
+.modal-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--azul), var(--grena));
+  margin-bottom: 12px;
+}
+.modal-img .simulada { position: absolute; inset: 0; display: grid; place-items: center; font-size: 72px; }
+.modal-img .img-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.modal-img.trancada .simulada,
+.modal-img.trancada .img-foto { filter: blur(3px) brightness(0.8); }
+.modal-img .marca-dagua { font-size: 12px; line-height: 3; }
+
+.modal-legenda { font-size: 13px; margin-bottom: 12px; }
+.modal-obs { font-size: 11px; color: var(--texto-2); margin: 10px 0; line-height: 1.6; }
+
+.btn-comprar {
+  width: 100%;
+  background: linear-gradient(135deg, #1f9e4d, #167a3a);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.btn-fechar {
+  background: none;
+  border: none;
+  color: var(--texto-2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.aviso-fotos {
+  font-size: 12px;
+  color: var(--texto-2);
+  background: rgba(217, 166, 43, 0.08);
+  border: 1px dashed rgba(217, 166, 43, 0.4);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+.aviso-fotos b { color: var(--ouro-claro); }
+
+/* ---------- Vídeos ---------- */
+.card-video .thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--grena), var(--azul));
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  margin-bottom: 10px;
+  border: 1px solid var(--linha);
+}
+.card-video h3 { font-size: 20px; }
+.card-video p { font-size: 12px; color: var(--texto-2); }
+
+/* ---------- Patrocinadores ---------- */
+.grade-patro { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.card-patro {
+  border: 1px solid var(--linha);
+  border-radius: 16px;
+  padding: 18px 12px;
+  text-align: center;
+  background: var(--card);
+}
+.card-patro.destaque {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(217,166,43,0.2), rgba(165,0,68,0.15));
+  border: 1px solid var(--ouro);
+}
+.card-patro .logo-patro { font-size: 34px; margin-bottom: 6px; }
+.card-patro h3 { font-size: 18px; }
+.card-patro p { font-size: 11px; color: var(--texto-2); }
+
+.cta-patro {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  color: #2b1d00;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 15px;
+  border-radius: 16px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+/* ---------- Rankings ---------- */
+.rank-lista { list-style: none; }
+.rank-lista li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--linha);
+  font-size: 14px;
+}
+.rank-lista li:last-child { border-bottom: none; }
+.rank-lista .medalha { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--ouro); width: 28px; text-align: center; }
+.rank-lista .info { line-height: 1.2; }
+.rank-lista .info .t { font-size: 11px; color: var(--texto-2); }
+.rank-lista .valor { margin-left: auto; font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--ouro-claro); }
+.rank-lista .valor.amarelo { color: var(--amarelo); }
+.rank-lista .valor.vermelho { color: var(--vermelho); }
+
+/* ---------- Bolão de palpites ---------- */
+.banner-bolao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(31, 122, 61, 0.35), rgba(13, 32, 55, 0.65));
+  border: 1px solid var(--verde);
+  border-radius: 16px;
+  padding: 14px;
+  margin: 8px 0 2px;
+  color: var(--texto);
+  text-decoration: none;
+  font-size: 13px;
+  animation: pulsar 2.4s ease-in-out infinite;
+}
+.banner-bolao .seta { margin-left: auto; color: var(--verde); font-weight: 800; }
+
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.3); }
+  50% { box-shadow: 0 0 0 9px rgba(46, 204, 113, 0); }
+}
+
+.palpite-jogo {
+  display: grid;
+  grid-template-columns: 1fr 46px 14px 46px 1fr;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.palpite-jogo .time { text-align: center; line-height: 1.4; }
+.palpite-jogo .x { text-align: center; color: var(--texto-2); }
+
+.palpite-jogo input {
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--ouro-claro);
+  background: var(--fundo-2);
+  border: 1px solid var(--linha);
+  border-radius: 10px;
+  -moz-appearance: textfield;
+}
+.palpite-jogo input::-webkit-outer-spin-button,
+.palpite-jogo input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.palpite-jogo input:focus { outline: none; border-color: var(--ouro); }
+
+.campo-nome {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--linha);
+  background: var(--fundo-2);
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 14px;
+}
+.campo-nome:focus { outline: none; border-color: var(--ouro); }
+
+.btn-bolao {
+  width: 100%;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  border: none;
+  color: #2b1d00;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 15px;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: transform 0.15s;
+}
+.btn-bolao:active { transform: scale(0.98); }
+
+.btn-bolao.secundario {
+  background: linear-gradient(135deg, #1f9e4d, #167a3a);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rank-lista li.sou-eu {
+  background: rgba(217, 166, 43, 0.1);
+  border-radius: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: inset 2px 0 0 var(--ouro);
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  text-align: center;
+  color: var(--texto-2);
+  font-size: 11px;
+  padding: 26px 0 10px;
+  line-height: 1.7;
+}
+.rodape .ouro { color: var(--ouro); }
+
+.vazio { text-align: center; color: var(--texto-2); font-size: 13px; padding: 30px 10px; }
+
+@media (max-width: 480px) {
+  .topo .titulos .assoc { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+  .topo .titulos h1 { font-size: 20px; white-space: nowrap; }
+  .selo-tema { display: none; }
+}
+
+@media (min-width: 560px) {
+  .grade-selecoes { grid-template-columns: repeat(4, 1fr); }
+  .grade-figurinhas { grid-template-columns: repeat(6, 1fr); }
+}

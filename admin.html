@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Painel do Admin — II Copa Baba dos Coroas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-linha { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .admin-linha select, .admin-linha input {
+      background: var(--fundo-2); color: var(--texto); border: 1px solid var(--linha);
+      border-radius: 10px; padding: 10px; font-family: inherit; font-size: 13px; flex: 1; min-width: 0;
+    }
+    .admin-linha input[type="number"] {
+      flex: 0 0 56px; width: 56px; height: 48px; text-align: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--ouro-claro);
+    }
+    .btn-mini {
+      background: var(--card-2); border: 1px solid var(--linha); color: var(--texto-2);
+      border-radius: 10px; padding: 8px 12px; font-family: inherit; font-size: 12px;
+      font-weight: 700; cursor: pointer; flex-shrink: 0;
+    }
+    .btn-mini.remover { color: var(--vermelho); }
+    .btn-salvar {
+      width: 100%; background: linear-gradient(135deg, #1f9e4d, #167a3a); color: #fff;
+      border: none; border-radius: 14px; padding: 14px; font-family: inherit;
+      font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 10px;
+    }
+    .btn-apagar {
+      width: 100%; background: none; border: 1px dashed var(--vermelho); color: var(--vermelho);
+      border-radius: 14px; padding: 10px; font-family: inherit; font-size: 12px;
+      font-weight: 700; cursor: pointer; margin-top: 8px;
+    }
+    .msg { font-size: 12px; padding: 10px 12px; border-radius: 10px; margin-top: 10px; display: none; }
+    .msg.ok { display: block; background: rgba(46, 204, 113, 0.12); color: var(--verde); border: 1px solid rgba(46, 204, 113, 0.4); }
+    .msg.erro { display: block; background: rgba(231, 76, 60, 0.12); color: var(--vermelho); border: 1px solid rgba(231, 76, 60, 0.4); }
+    .placar-admin { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 12px 0; }
+    .placar-admin .lado { text-align: center; font-size: 12px; font-weight: 700; flex: 1; }
+    .check-foto { display: flex; align-items: center; gap: 10px; padding: 9px 4px; border-bottom: 1px solid var(--linha); font-size: 13px; }
+    .check-foto:last-child { border-bottom: none; }
+    .check-foto input { width: 20px; height: 20px; accent-color: #1f9e4d; }
+    .check-foto .id-foto { margin-left: auto; color: var(--texto-2); font-size: 11px; }
+    .sub-bloco { border-top: 1px dashed var(--linha); margin-top: 12px; padding-top: 10px; }
+    .sub-bloco .rotulo { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--texto-2); margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topo">
+      <div class="escudo">👑</div>
+      <div class="titulos">
+        <div class="assoc">II Copa Baba dos Coroas</div>
+        <h1>PAINEL DO <span class="ii">ADMIN</span></h1>
+      </div>
+    </header>
+
+    <!-- LOGIN -->
+    <section id="tela-login">
+      <div class="card" style="margin-top:20px">
+        <span class="chip">🔐 Acesso restrito</span>
+        <p style="font-size:13px; color:var(--texto-2); margin:10px 0">
+          Entre com o mesmo e-mail e senha de administrador do Motion Lab.
+        </p>
+        <input class="campo-nome" id="login-email" type="email" placeholder="E-mail" autocomplete="username">
+        <input class="campo-nome" id="login-senha" type="password" placeholder="Senha" autocomplete="current-password">
+        <button class="btn-salvar" onclick="entrar()">Entrar</button>
+        <div class="msg" id="login-msg"></div>
+      </div>
+      <p class="subtitulo" style="text-align:center; margin-top:14px">
+        <a href="index.html" style="color:var(--ouro-claro)">← Voltar ao app</a>
+      </p>
+    </section>
+
+    <!-- PAINEL -->
+    <section id="tela-admin" style="display:none">
+      <div class="card" style="display:flex; align-items:center; gap:10px">
+        <span style="font-size:13px">Logado como <b id="admin-email"></b></span>
+        <button class="btn-mini" style="margin-left:auto" onclick="sair()">Sair</button>
+      </div>
+
+      <h2 class="titulo-secao">Lançar <span class="destaque">resultados</span></h2>
+      <p class="subtitulo">Preencha o placar, os gols e os cartões. Ao salvar, o app de todo mundo atualiza na hora.</p>
+      <div id="lista-jogos-admin"></div>
+
+      <h2 class="titulo-secao">Liberar <span class="destaque">fotos compradas</span> 🔓</h2>
+      <p class="subtitulo">Recebeu o Pix? Marque a foto e salve — ela abre no app do comprador (e de todos).</p>
+      <div id="lista-fotos-admin"></div>
+
+      <p class="subtitulo" style="text-align:center; margin-top:14px">
+        <a href="index.html" style="color:var(--ouro-claro)">← Voltar ao app</a>
+      </p>
+    </section>
+
+    <footer class="rodape">
+      <span class="ouro">👑 II Copa Baba dos Coroas</span> · Painel do administrador
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/supabase.js"></script>
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const time = (id) => SELECOES.find((s) => s.id === id);
+
+    // Estado dos resultados em edição: { jogoId: { placar: [a,b], eventos: {...} } }
+    let RES = {};
+
+    // ---------- Login ----------
+    async function entrar() {
+      const msg = $('#login-msg');
+      msg.className = 'msg';
+      const { error } = await supa.auth.signInWithPassword({
+        email: $('#login-email').value.trim(),
+        password: $('#login-senha').value,
+      });
+      if (error) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Não foi possível entrar: ' + error.message;
+        return;
+      }
+      mostrarPainel();
+    }
+
+    async function sair() {
+      await supa.auth.signOut();
+      location.reload();
+    }
+
+    async function mostrarPainel() {
+      const { data: { session } } = await supa.auth.getSession();
+      if (!session) return;
+      $('#admin-email').textContent = session.user.email;
+      $('#tela-login').style.display = 'none';
+      $('#tela-admin').style.display = 'block';
+      await carregarResultados();
+      renderJogosAdmin();
+      await renderFotosAdmin();
+    }
+
+    // ---------- Resultados ----------
+    async function carregarResultados() {
+      RES = {};
+      const { data, error } = await supa.from('copa_resultados').select('*');
+      if (!error && data) {
+        data.forEach((r) => {
+          RES[r.jogo_id] = { placar: [r.placar_casa, r.placar_fora], eventos: r.eventos, salvo: true };
+        });
+      }
+    }
+
+    const EVENTO_VAZIO = () => ({ gols: [], amarelos: [], vermelhos: [] });
+
+    function garanteJogo(id) {
+      if (!RES[id]) RES[id] = { placar: [0, 0], eventos: EVENTO_VAZIO(), salvo: false };
+      if (!RES[id].eventos) RES[id].eventos = EVENTO_VAZIO();
+      return RES[id];
+    }
+
+    function selectJogador(jogo, valorTime, valorJogador, onchange, opcional) {
+      const t = time(valorTime || jogo.casa);
+      const ops = t ? t.elenco.map((j) =>
+        `<option value="${j.nome}" ${j.nome === valorJogador ? 'selected' : ''}>${j.nome} (#${j.n})</option>`).join('') : '';
+      return `<select onchange="${onchange}">
+        ${opcional ? `<option value="">— sem assistência —</option>` : `<option value="">escolha…</option>`}
+        ${ops}
+      </select>`;
+    }
+
+    function cardJogoAdmin(j) {
+      const casa = time(j.casa);
+      const fora = time(j.fora);
+      const r = RES[j.id];
+      const dataStr = new Date(j.data).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
+      const linhasGols = r ? r.eventos.gols.map((g, i) => `
+        <div class="admin-linha">
+          <select onchange="mudaEvento(${j.id},'gols',${i},'time',this.value)">
+            <option value="${j.casa}" ${g.time === j.casa ? 'selected' : ''}>${casa.nome}</option>
+            <option value="${j.fora}" ${g.time === j.fora ? 'selected' : ''}>${fora.nome}</option>
+          </select>
+          ${selectJogador(j, g.time, g.jogador, `mudaEvento(${j.id},'gols',${i},'jogador',this.value)`)}
+          ${selectJogador(j, g.time, g.assist || '', `mudaEvento(${j.id},'gols',${i},'assist',this.value)`, true)}
+          <button class="btn-mini remover" onclick="rmEvento(${j.id},'gols',${i})">✕</button>
+        </div>`).join('') : '';
+
+      const linhasCartao = (tipo) => r ? r.eventos[tipo].map((c, i) => `
+        <div class="admin-linha">
+          <select onchange="mudaEvento(${j.id},'${tipo}',${i},'time',this.value)">
+            <option value="${j.casa}" ${c.time === j.casa ? 'selected' : ''}>${casa.nome}</option>
+            <option value="${j.fora}" ${c.time === j.fora ? 'selected' : ''}>${fora.nome}</option>
+          </select>
+          ${selectJogador(j, c.time, c.jogador, `mudaEvento(${j.id},'${tipo}',${i},'jogador',this.value)`)}
+          <button class="btn-mini remover" onclick="rmEvento(${j.id},'${tipo}',${i})">✕</button>
+        </div>`).join('') : '';
+
+      return `
+        <div class="card" id="jogo-admin-${j.id}">
+          <span class="chip">${j.fase === 'Pontos Corridos' ? `Rodada ${j.rodada}` : j.fase} · ${dataStr}${r && r.salvo ? ' · ✅ salvo' : ''}</span>
+          <div class="placar-admin">
+            <span class="lado">${casa.bandeira}<br>${casa.nome}</span>
+            <input type="number" min="0" max="99" value="${r ? r.placar[0] : ''}" placeholder="-"
+                   onchange="mudaPlacar(${j.id}, 0, this.value)" class="admin-linha" style="flex:0 0 56px">
+            <span style="color:var(--texto-2)">×</span>
+            <input type="number" min="0" max="99" value="${r ? r.placar[1] : ''}" placeholder="-"
+                   onchange="mudaPlacar(${j.id}, 1, this.value)" style="flex:0 0 56px">
+            <span class="lado">${fora.bandeira}<br>${fora.nome}</span>
+          </div>
+          ${r ? `
+            <div class="sub-bloco"><div class="rotulo">⚽ Gols (com assistência opcional)</div>
+              ${linhasGols}
+              <button class="btn-mini" onclick="addEvento(${j.id},'gols')">+ adicionar gol</button>
+            </div>
+            <div class="sub-bloco"><div class="rotulo">🟨 Cartões amarelos</div>
+              ${linhasCartao('amarelos')}
+              <button class="btn-mini" onclick="addEvento(${j.id},'amarelos')">+ amarelo</button>
+            </div>
+            <div class="sub-bloco"><div class="rotulo">🟥 Cartões vermelhos</div>
+              ${linhasCartao('vermelhos')}
+              <button class="btn-mini" onclick="addEvento(${j.id},'vermelhos')">+ vermelho</button>
+            </div>
+            <button class="btn-salvar" onclick="salvarResultado(${j.id})">💾 Salvar resultado</button>
+            ${r.salvo ? `<button class="btn-apagar" onclick="apagarResultado(${j.id})">Apagar resultado (volta a "não jogado")</button>` : ''}
+          ` : '<p class="subtitulo" style="margin:0">Preencha o placar para lançar o resultado.</p>'}
+          <div class="msg" id="msg-jogo-${j.id}"></div>
+        </div>`;
+    }
+
+    function renderJogosAdmin() {
+      const jogos = JOGOS.filter((j) => j.casa && j.fora);
+      $('#lista-jogos-admin').innerHTML = jogos.map(cardJogoAdmin).join('') +
+        '<p class="subtitulo">As finais aparecem aqui quando os finalistas forem definidos no app.</p>';
+    }
+
+    function reRender(id) {
+      const el = document.getElementById(`jogo-admin-${id}`);
+      const j = JOGOS.find((x) => x.id === id);
+      el.outerHTML = cardJogoAdmin(j);
+    }
+
+    function mudaPlacar(id, lado, valor) {
+      if (valor === '') return;
+      const r = garanteJogo(id);
+      r.placar[lado] = Math.max(0, Number(valor));
+      reRender(id);
+    }
+
+    function addEvento(id, tipo) {
+      const j = JOGOS.find((x) => x.id === id);
+      const r = garanteJogo(id);
+      r.eventos[tipo].push(tipo === 'gols' ? { time: j.casa, jogador: '' } : { time: j.casa, jogador: '' });
+      reRender(id);
+    }
+
+    function rmEvento(id, tipo, i) {
+      RES[id].eventos[tipo].splice(i, 1);
+      reRender(id);
+    }
+
+    function mudaEvento(id, tipo, i, campo, valor) {
+      const ev = RES[id].eventos[tipo][i];
+      ev[campo] = valor || undefined;
+      if (campo === 'time') { ev.jogador = ''; delete ev.assist; } // trocou o time, reescolhe o jogador
+      reRender(id);
+    }
+
+    async function salvarResultado(id) {
+      const r = RES[id];
+      const msg = document.getElementById(`msg-jogo-${id}`);
+      // limpa eventos sem jogador escolhido
+      const eventos = {
+        gols: r.eventos.gols.filter((g) => g.jogador),
+        amarelos: r.eventos.amarelos.filter((c) => c.jogador),
+        vermelhos: r.eventos.vermelhos.filter((c) => c.jogador),
+      };
+      const { error } = await supa.from('copa_resultados').upsert({
+        jogo_id: id,
+        placar_casa: r.placar[0],
+        placar_fora: r.placar[1],
+        eventos,
+        updated_at: new Date().toISOString(),
+      });
+      if (error) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Erro ao salvar: ' + error.message;
+      } else {
+        r.salvo = true;
+        r.eventos = eventos;
+        reRender(id);
+        const novo = document.getElementById(`msg-jogo-${id}`);
+        novo.className = 'msg ok';
+        novo.textContent = '✅ Resultado salvo! O app já está atualizado.';
+      }
+    }
+
+    async function apagarResultado(id) {
+      const { error } = await supa.from('copa_resultados').delete().eq('jogo_id', id);
+      if (!error) { delete RES[id]; reRender(id); }
+    }
+
+    // ---------- Fotos ----------
+    let FOTOS_LIBERADAS = new Set();
+
+    async function renderFotosAdmin() {
+      const { data } = await supa.from('copa_fotos_liberadas').select('foto_id');
+      FOTOS_LIBERADAS = new Set((data || []).map((f) => f.foto_id));
+
+      $('#lista-fotos-admin').innerHTML = FOTOS.map((g) => `
+        <div class="card">
+          <span class="chip">📸 ${g.titulo}</span>
+          <div style="margin-top:8px">
+            ${g.fotos.map((f) => `
+              <label class="check-foto">
+                <input type="checkbox" value="${f.id}" ${FOTOS_LIBERADAS.has(f.id) || f.liberada ? 'checked' : ''} ${f.liberada ? 'disabled' : ''}>
+                ${f.legenda} ${f.liberada ? '(amostra grátis)' : ''}
+                <span class="id-foto">${f.id}</span>
+              </label>`).join('')}
+          </div>
+        </div>`).join('') + `
+        <button class="btn-salvar" onclick="salvarFotos()">💾 Salvar fotos liberadas</button>
+        <div class="msg" id="msg-fotos"></div>`;
+    }
+
+    async function salvarFotos() {
+      const msg = $('#msg-fotos');
+      const marcadas = new Set(
+        [...document.querySelectorAll('#lista-fotos-admin input[type="checkbox"]:not(:disabled):checked')].map((c) => c.value)
+      );
+      const adicionar = [...marcadas].filter((id) => !FOTOS_LIBERADAS.has(id)).map((id) => ({ foto_id: id }));
+      const remover = [...FOTOS_LIBERADAS].filter((id) => !marcadas.has(id));
+
+      let erro = null;
+      if (adicionar.length) {
+        const { error } = await supa.from('copa_fotos_liberadas').upsert(adicionar);
+        erro = erro || error;
+      }
+      if (remover.length) {
+        const { error } = await supa.from('copa_fotos_liberadas').delete().in('foto_id', remover);
+        erro = erro || error;
+      }
+      if (erro) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Erro ao salvar: ' + erro.message;
+      } else {
+        FOTOS_LIBERADAS = marcadas;
+        msg.className = 'msg ok';
+        msg.textContent = '✅ Fotos atualizadas no app!';
+      }
+    }
+
+    // Sessão persistida: entra direto se já estiver logado
+    document.addEventListener('DOMContentLoaded', mostrarPainel);
+  </script>
+</body>
+</html>

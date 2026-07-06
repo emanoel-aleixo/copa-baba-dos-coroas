@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0e16">
+  <meta name="description" content="II Copa Baba dos Coroas — Edição Copa do Mundo. Canindé de São Francisco/SE. Tabela, álbum de figurinhas, fotos, estatísticas e muito mais.">
+  <title>II Copa Baba dos Coroas ⚽👑</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Topo -->
+    <header class="topo">
+      <img class="escudo" src="assets/logo-baba.png" alt="Escudo Baba dos Coroas"
+           onerror="this.outerHTML='<div class=&quot;escudo&quot;>👑</div>'">
+      <div class="titulos">
+        <div class="assoc">Associação Baba dos Coroas</div>
+        <h1><span class="ii">II</span> COPA BABA DOS COROAS</h1>
+      </div>
+      <span class="selo-tema">🏆 Edição Copa do Mundo</span>
+    </header>
+
+    <!-- ===================== INÍCIO ===================== -->
+    <section class="secao ativa" id="secao-inicio">
+      <div class="hero">
+        <div class="coroa-mascote">🏆</div>
+        <div class="local" style="color: var(--ouro-claro); letter-spacing: 0.3em">Vem aí!</div>
+        <h2>II COPA <span class="ouro">BABA DOS COROAS</span></h2>
+        <div class="local">Edição Copa do Mundo · Canindé/SE</div>
+        <div class="contagem">
+          <div class="bloco"><div class="num" id="cont-dias">--</div><div class="rot">dias</div></div>
+          <div class="bloco"><div class="num" id="cont-horas">--</div><div class="rot">horas</div></div>
+          <div class="bloco"><div class="num" id="cont-min">--</div><div class="rot">min</div></div>
+          <div class="bloco"><div class="num" id="cont-seg">--</div><div class="rot">seg</div></div>
+        </div>
+        <p class="local" style="margin-top:12px" id="contagem-rotulo">🗓️ Estreia 30 de agosto</p>
+      </div>
+
+      <h2 class="titulo-secao">Próximos <span class="destaque">jogos</span></h2>
+      <div id="proximos-jogos"></div>
+
+      <a class="banner-bolao" href="#" onclick="abrirBolao(); return false;">
+        🎯 <span><b>Bolão da Copa</b> — dê seus palpites e marque pontos!</span>
+        <span class="seta">→</span>
+      </a>
+
+      <h2 class="titulo-secao">Últimos <span class="destaque">resultados</span></h2>
+      <div id="ultimos-resultados"></div>
+
+      <h2 class="titulo-secao">Seleções <span class="destaque">confirmadas</span></h2>
+      <div class="stats-mini" id="lideres"></div>
+
+      <h2 class="titulo-secao">Nossos <span class="destaque">patrocinadores</span></h2>
+      <div class="grade-patro"></div>
+      <a class="cta-patro" href="#" onclick="irPara('patro'); return false;">👑 Quero patrocinar a Copa</a>
+    </section>
+
+    <!-- ===================== JOGOS ===================== -->
+    <section class="secao" id="secao-jogos">
+      <h2 class="titulo-secao">Jogos & <span class="destaque">Classificação</span></h2>
+      <p class="subtitulo">Tabela completa da II Copa — domingos no campo society.</p>
+
+      <div class="abas">
+        <button class="ativa" data-aba="painel-rodadas">🗓️ Rodadas</button>
+        <button data-aba="painel-bolao">🎯 Bolão</button>
+        <button data-aba="painel-classificacao">📊 Classificação</button>
+        <button data-aba="painel-artilharia">⚽ Artilharia</button>
+        <button data-aba="painel-assist">👟 Assistências</button>
+        <button data-aba="painel-cartoes">🟨 Cartões</button>
+      </div>
+
+      <div class="painel-aba" id="painel-rodadas">
+        <div id="lista-jogos"></div>
+      </div>
+
+      <div class="painel-aba" id="painel-bolao" style="display:none">
+        <div id="conteudo-bolao"></div>
+      </div>
+
+      <div class="painel-aba" id="painel-classificacao" style="display:none">
+        <div id="classificacao"></div>
+      </div>
+
+      <div class="painel-aba" id="painel-artilharia" style="display:none">
+        <div class="card"><span class="chip">⚽ Artilheiros</span><div id="rank-gols"></div></div>
+      </div>
+
+      <div class="painel-aba" id="painel-assist" style="display:none">
+        <div class="card"><span class="chip">👟 Garçons (assistências)</span><div id="rank-assist"></div></div>
+      </div>
+
+      <div class="painel-aba" id="painel-cartoes" style="display:none">
+        <div class="card"><span class="chip">🟨 Cartões amarelos</span><div id="rank-amarelos"></div></div>
+        <div class="card"><span class="chip">🟥 Cartões vermelhos</span><div id="rank-vermelhos"></div></div>
+      </div>
+    </section>
+
+    <!-- ===================== SELEÇÕES ===================== -->
+    <section class="secao" id="secao-selecoes">
+      <div id="intro-selecoes">
+        <h2 class="titulo-secao">As <span class="destaque">seleções</span></h2>
+        <p class="subtitulo">Toque em uma seleção para ver a história, o elenco e as estatísticas.</p>
+      </div>
+      <div class="grade-selecoes" id="grade-selecoes"></div>
+      <div id="detalhe-selecao" style="display:none"></div>
+    </section>
+
+    <!-- ===================== ÁLBUM ===================== -->
+    <section class="secao" id="secao-album">
+      <h2 class="titulo-secao">Álbum da <span class="destaque">Copa</span> 🎴</h2>
+      <p class="subtitulo">Colecione as figurinhas de todos os jogadores! Um pacotinho grátis por dia.</p>
+
+      <div class="card album-progresso">
+        <span class="chip">Meu álbum</span>
+        <p style="margin-top:10px; font-size:14px" id="album-resumo"></p>
+        <div class="barra-prog"><div class="preenchido" id="album-barra"></div></div>
+      </div>
+
+      <button class="btn-pacote" id="btn-pacote">🎁 Abrir pacotinho do dia</button>
+      <div class="pacote-aberto" id="pacote-aberto"></div>
+
+      <div id="album-grades"></div>
+    </section>
+
+    <!-- ===================== FOTOS ===================== -->
+    <section class="secao" id="secao-fotos">
+      <h2 class="titulo-secao">Fotos dos <span class="destaque">jogos</span> 📸</h2>
+      <p class="subtitulo">Reviva os melhores momentos de cada partida.</p>
+
+      <div class="aviso-fotos">
+        🔒 As fotos bloqueadas mostram uma <b>prévia com marca d'água</b>.
+        Toque para ampliar e comprar pelo WhatsApp (Pix) — você recebe a foto
+        <b>em alta resolução, sem marca d'água e sem borrão</b>.
+      </div>
+
+      <div id="galerias-fotos"></div>
+    </section>
+
+    <!-- ===================== NOSSOS PATROCINADORES ===================== -->
+    <section class="secao" id="secao-patro">
+      <h2 class="titulo-secao">Nossos <span class="destaque">patrocinadores</span> 🤝</h2>
+      <p class="subtitulo">Quem faz a II Copa Baba dos Coroas acontecer. Valorize quem apoia o nosso baba!</p>
+
+      <div class="grade-patro"></div>
+
+      <h2 class="titulo-secao">Seja um <span class="destaque">patrocinador</span></h2>
+      <div class="card">
+        <p style="font-size:14px; line-height:1.7">
+          Sua marca na maior copa de coroas do sertão! 👑<br>
+          Divulgação no app, nos uniformes e nas transmissões.
+          Fale com a organização da <b>Associação Baba dos Coroas</b>.
+        </p>
+        <a class="cta-patro" href="https://wa.me/5579999111241?text=Quero%20patrocinar%20a%20II%20Copa%20Baba%20dos%20Coroas!" target="_blank">💬 Chamar no WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- ===================== MAIS ===================== -->
+    <section class="secao" id="secao-mais">
+      <h2 class="titulo-secao">Vídeos da <span class="destaque">Copa</span> 🎬</h2>
+      <div id="lista-videos"></div>
+
+      <h2 class="titulo-secao">Sobre a <span class="destaque">Copa</span></h2>
+      <div class="card">
+        <p style="font-size:14px; line-height:1.7">
+          A <b>II Copa Baba dos Coroas</b> é organizada pela <b>Associação Baba dos Coroas</b>
+          (Canindé de São Francisco/SE, desde 2019). Esta é a <b>Edição Copa do Mundo</b> 🏆 —
+          cada time representa uma seleção!<br><br>
+          ⚽ Futebol society · 🗓️ Estreia em 30 de agosto · 🏆 5 seleções na disputa<br><br>
+          <b>Formato:</b> todos jogam contra todos. Os dois primeiros fazem a
+          <b>GRANDE FINAL</b>, 3º e 4º disputam o bronze e o 5º colocado dá tchau. 👋
+        </p>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <span class="ouro">👑 II Copa Baba dos Coroas</span><br>
+      Associação Baba dos Coroas · Canindé de São Francisco/SE · desde 2019
+    </footer>
+  </div>
+
+  <!-- Navegação inferior (estilo app) -->
+  <nav class="nav-inferior">
+    <button class="ativa" data-secao="inicio"><span class="ico">🏠</span>Início</button>
+    <button data-secao="jogos"><span class="ico">🏆</span>Jogos</button>
+    <button data-secao="selecoes"><span class="ico">🌎</span>Seleções</button>
+    <button data-secao="album"><span class="ico">🎴</span>Álbum</button>
+    <button data-secao="fotos"><span class="ico">📸</span>Fotos</button>
+    <button data-secao="patro"><span class="ico">🤝</span>Patrocinadores</button>
+    <button data-secao="mais"><span class="ico">➕</span>Mais</button>
+  </nav>
+
+  <!-- Modal de ampliação de foto -->
+  <div class="modal-foto" id="modal-foto" onclick="fecharFoto()"></div>
+
+  <!-- Confete de celebração (biblioteca canvas-confetti) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <!-- Supabase (dados ao vivo + bolão geral) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
