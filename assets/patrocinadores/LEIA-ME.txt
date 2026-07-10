@@ -1,0 +1,3 @@
+Coloque aqui as logos dos patrocinadores:
+- prefeitura.png
+- miltinho.png

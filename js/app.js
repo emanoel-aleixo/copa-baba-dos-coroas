@@ -629,12 +629,18 @@ function renderVideos() {
 // ---------- Patrocinadores ----------
 // Preenche todas as grades (home e página Nossos Patrocinadores)
 function renderPatrocinadores() {
-  const html = PATROCINADORES.map((p) => `
+  const html = PATROCINADORES.map((p) => {
+    const ico = p.destaque ? '👑' : '🤝';
+    const visual = p.logo
+      ? `<img class="logo-patro-img" src="${p.logo}" alt="${p.nome}" loading="lazy" onerror="this.outerHTML='<div class=&quot;logo-patro&quot;>${ico}</div>'">`
+      : `<div class="logo-patro">${ico}</div>`;
+    return `
     <div class="card-patro ${p.destaque ? 'destaque' : ''}">
-      <div class="logo-patro">${p.destaque ? '👑' : '🤝'}</div>
+      ${visual}
       <h3>${p.nome}</h3>
       <p>${p.desc}</p>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   $$('.grade-patro').forEach((g) => { g.innerHTML = html; });
 }
 

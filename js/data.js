@@ -134,8 +134,6 @@ const VIDEOS = [
 
 // --- Patrocinadores ---------------------------------------------
 const PATROCINADORES = [
-  { nome: 'Seu Patrocínio Aqui', desc: 'Cota Ouro 🥇', destaque: true },
-  { nome: 'Mercadinho do Povo', desc: 'Apoio' },
-  { nome: 'Bar do Careca', desc: 'O terceiro tempo é aqui' },
-  { nome: 'Auto Peças Canindé', desc: 'Apoio' },
+  { nome: 'Prefeitura de Canindé de São Francisco', desc: 'Apoio institucional', logo: 'assets/patrocinadores/prefeitura.png' },
+  { nome: 'Miltinho', desc: 'Patrocinador', logo: 'assets/patrocinadores/miltinho.png' },
 ];

@@ -789,6 +789,17 @@ h1, h2, h3, .display {
   border: 1px solid var(--ouro);
 }
 .card-patro .logo-patro { font-size: 34px; margin-bottom: 6px; }
+.card-patro .logo-patro-img {
+  width: 100%;
+  max-width: 150px;
+  height: 68px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 0 auto 8px;
+  display: block;
+}
 .card-patro h3 { font-size: 18px; }
 .card-patro p { font-size: 11px; color: var(--texto-2); }
 
