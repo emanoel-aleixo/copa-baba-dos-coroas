@@ -37,7 +37,7 @@ const SELECOES = [
     historia: 'Os vikings do sertão! Frios no começo, mas quando esquentam viram avalanche. Prometem faro de gol de norte a sul do campo.',
     elenco: [
       { n: 3, nome: 'França' }, { n: 5, nome: 'Fabio Phillype' },
-      { n: 10, nome: 'M. Cabral' }, { n: 15, nome: 'Galdene Souza' },
+      { n: 10, nome: 'M. Cabral' }, { n: 15, nome: 'Galdene Souza', pos: 'GOL' },
       { n: 29, nome: 'Andrezinho' }, { n: 33, nome: 'Jackson' },
       { n: 40, nome: 'Darlan Galdino' }, { n: 70, nome: 'Eduardo Aleixo' },
       { n: 77, nome: 'Marcelo Paca' },
