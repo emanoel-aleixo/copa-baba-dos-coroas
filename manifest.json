@@ -8,9 +8,9 @@
   "theme_color": "#0b101c",
   "icons": [
     {
-      "src": "assets/logo-copa.jpg",
+      "src": "assets/logo-copa.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
