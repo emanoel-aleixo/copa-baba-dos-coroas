@@ -24,10 +24,10 @@ const SELECOES = [
     confirmada: true,
     historia: 'A seleção canarinho do baba. Fundada pelos coroas mais antigos do grupo, promete jogo bonito e resenha garantida no terceiro tempo.',
     elenco: [
-      { n: 2, nome: 'Mardoka La' }, { n: 3, nome: 'Naná' },
+      { n: 2, nome: 'Mardoka La', pos: 'GOL' }, { n: 3, nome: 'Naná' },
       { n: 10, nome: 'Emanoel Aleixo' }, { n: 11, nome: 'Nilton' },
       { n: 13, nome: 'Geo Cruz' }, { n: 14, nome: 'Pezão' },
-      { n: 19, nome: 'Fábio Nunes' }, { n: 22, nome: 'Ramigol', pos: 'GOL' },
+      { n: 19, nome: 'Fábio Nunes' }, { n: 22, nome: 'Ramigol' },
       { n: 58, nome: 'Deliano' },
     ],
   },
