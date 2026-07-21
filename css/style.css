@@ -25,6 +25,12 @@
 .selo-pago { background: rgba(46,204,113,0.12); color: #2ecc71; border: 1px solid rgba(46,204,113,0.4); }
 .selo-pendente { background: rgba(241,196,15,0.1); color: #f1c40f; border: 1px solid rgba(241,196,15,0.35); }
 .bolao-resultado { font-size: 13px; line-height: 1.7; }
+.card-bolao.em-breve { opacity: .75; }
+.abre-em {
+  font-size: 13px; text-align: center; color: #f1c40f;
+  background: rgba(241,196,15,.08); border: 1px dashed rgba(241,196,15,.35);
+  border-radius: 10px; padding: 9px; margin-top: 4px;
+}
 .acumulou {
   margin-top: 12px; text-align: center; font-size: 14px;
   background: linear-gradient(135deg, #a50044, #d50032); color: #fff;

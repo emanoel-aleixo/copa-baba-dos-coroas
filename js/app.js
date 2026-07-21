@@ -431,6 +431,22 @@ const meuPalpiteDoJogo = (jogoId) =>
   palpitesValidos().find((p) => p.jogo_id === jogoId && p.device_id === deviceId());
 
 // Prêmio de cada jogo + acumulado (só palpites PAGOS valem)
+// Janela de palpites de cada jogo: abre na SEGUNDA-FEIRA da semana do jogo
+// e fecha no SÁBADO à noite (véspera). Jogo é sempre no domingo.
+function janelaBolao(jogo) {
+  const j = new Date(jogo.data);
+  const abre = new Date(j); abre.setDate(j.getDate() - 6); abre.setHours(0, 0, 0, 0);
+  const fecha = new Date(j); fecha.setDate(j.getDate() - 1); fecha.setHours(23, 59, 59, 999);
+  return { abre, fecha };
+}
+const bolaoAberto = (jogo) => {
+  if (!jogo || jogo.placar) return false;
+  const { abre, fecha } = janelaBolao(jogo);
+  const agora = new Date();
+  return agora >= abre && agora <= fecha;
+};
+const fmtDiaMes = (d) => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
 function calcularPremios() {
   const pagos = palpitesValidos().filter((p) => p.pago);
   const jogos = JOGOS.filter((j) => j.casa && j.fora)
@@ -477,10 +493,19 @@ function renderBolao() {
   const { info, acumulado } = calcularPremios();
 
   const confirmado = (id) => { const t = timePorId(id); return t && t.confirmada; };
-  const abertos = JOGOS
-    .filter((j) => !j.placar && j.casa && j.fora && confirmado(j.casa) && confirmado(j.fora)
-      && new Date(j.data) > new Date())
-    .sort((a, b) => new Date(a.data) - new Date(b.data));
+  const valido = (j) => j.casa && j.fora && confirmado(j.casa) && confirmado(j.fora);
+  const porData = (a, b) => new Date(a.data) - new Date(b.data);
+
+  // Aberto agora (segunda → sábado à noite)
+  const abertos = JOGOS.filter((j) => !j.placar && valido(j) && bolaoAberto(j)).sort(porData);
+  // Ainda vai abrir (jogos das próximas semanas)
+  const emBreve = JOGOS
+    .filter((j) => !j.placar && valido(j) && new Date() < janelaBolao(j).abre)
+    .sort(porData);
+  // Fechou o palpite mas o jogo ainda não aconteceu
+  const aguardando = JOGOS
+    .filter((j) => !j.placar && valido(j) && new Date() > janelaBolao(j).fecha)
+    .sort(porData);
   const encerrados = JOGOS
     .filter((j) => j.placar && j.casa && j.fora)
     .sort((a, b) => new Date(b.data) - new Date(a.data));
@@ -555,8 +580,9 @@ function renderBolao() {
     <div class="card album-progresso">
       <span class="chip">🎯 Bolão · ${fmtReal(COPA.bolaoValor)} por jogo</span>
       <p style="margin-top:10px; font-size:13px; line-height:1.6">
-        Escolha o jogo, crave o <b>placar exato</b> e pague ${fmtReal(COPA.bolaoValor)} no Pix.
+        Crave o <b>placar exato</b> e pague ${fmtReal(COPA.bolaoValor)} no Pix.
         Quem acertar <b>leva o bolo</b>! Ninguém acertou? <b>Acumula pro próximo</b> 🔥<br>
+        🗓️ <b>Cada jogo tem seu bolão</b>: abre na <b>segunda-feira</b> e fecha no <b>sábado à noite</b>.<br>
         <span style="color:var(--texto-2)">Todo o valor arrecadado volta em prêmio para os participantes.</span>
       </p>
       ${acumulado > 0 ? `<div class="acumulou">🔥 ACUMULOU! <b>${fmtReal(acumulado)}</b> no próximo jogo</div>` : ''}
@@ -565,8 +591,40 @@ function renderBolao() {
     </div>
 
     ${abertos.length
-      ? abertos.map(cardAberto).join('')
-      : '<p class="vazio">Nenhum jogo aberto para palpite no momento.</p>'}
+      ? `<h3 class="rodada-titulo">🟢 Aberto para palpite</h3>${abertos.map(cardAberto).join('')}`
+      : '<p class="vazio">Nenhum jogo aberto agora. O bolão do próximo jogo abre na segunda-feira! 🗓️</p>'}
+
+    ${aguardando.length ? `
+      <h3 class="rodada-titulo">⏳ Palpites encerrados</h3>
+      ${aguardando.map((j) => {
+        const casa = timePorId(j.casa), fora = timePorId(j.fora);
+        const inf = info[j.id] || { pagantes: 0, bolo: 0 };
+        const meu = meuPalpiteDoJogo(j.id);
+        return `
+          <div class="card card-bolao">
+            ${cabecalhoJogo(j, inf)}
+            ${meu
+              ? `<div class="meu-palpite">Seu palpite: <b>${meu.palpite_casa} × ${meu.palpite_fora}</b></div>
+                 ${meu.pago ? '<div class="selo-pago">✅ Confirmado — boa sorte!</div>'
+                            : '<div class="selo-pendente">⏳ Pagamento não confirmado</div>'}`
+              : '<p class="bolao-resultado">Os palpites deste jogo já fecharam. Aguarde o resultado!</p>'}
+          </div>`;
+      }).join('')}` : ''}
+
+    ${emBreve.length ? `
+      <h3 class="rodada-titulo">🔒 Ainda vai abrir</h3>
+      ${emBreve.map((j) => {
+        const casa = timePorId(j.casa), fora = timePorId(j.fora);
+        const { abre } = janelaBolao(j);
+        return `
+          <div class="card card-bolao em-breve">
+            <div class="bolao-topo">
+              <span class="bolao-jogo">${casa.bandeira} ${casa.nome} <span class="x">×</span> ${fora.nome} ${fora.bandeira}</span>
+              <span class="bolao-data">${fmtData(j.data)} · ${fmtHora(j.data)}</span>
+            </div>
+            <p class="abre-em">🔒 Palpites abrem <b>segunda-feira, ${fmtDiaMes(abre)}</b></p>
+          </div>`;
+      }).join('')}` : ''}
 
     ${encerrados.length
       ? `<h3 class="rodada-titulo">Resultados do bolão</h3>${encerrados.map(cardEncerrado).join('')}`

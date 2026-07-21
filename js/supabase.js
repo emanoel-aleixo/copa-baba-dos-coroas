@@ -73,7 +73,8 @@ async function buscarPalpites() {
 async function enviarPalpiteJogo(jogoId, palpite, nome, whatsapp) {
   if (!supa) return false;
   const jogo = JOGOS.find((j) => j.id === jogoId);
-  if (!jogo || jogo.placar || new Date(jogo.data) <= new Date()) return false;
+  // só aceita dentro da janela (segunda → sábado à noite)
+  if (!jogo || jogo.placar || !bolaoAberto(jogo)) return false;
   try {
     const { error } = await supa.from('copa_palpites').insert([{
       device_id: deviceId(),
