@@ -168,4 +168,11 @@ const VIDEOS = [
 const PATROCINADORES = [
   { nome: 'Prefeitura de Canindé de São Francisco', desc: 'Apoio institucional', logo: 'assets/patrocinadores/prefeitura.png' },
   { nome: 'Miltinho', desc: 'Patrocinador', logo: 'assets/patrocinadores/miltinho.png' },
+  { nome: 'União Distribuidora', desc: 'Distribuidora · Canindé/SE', logo: 'assets/patrocinadores/uniao-distribuidora.png' },
+  { nome: 'Mendonça Farma', desc: 'Farmácia', logo: 'assets/patrocinadores/mendonca-farma.jpg' },
+  { nome: 'Disk Gelada São Pedro', desc: 'Bebidas · (79) 99887-5981', logo: 'assets/patrocinadores/disk-gelada-sao-pedro.jpg' },
+  { nome: 'Batista & Ferreira', desc: 'Advogados associados', logo: 'assets/patrocinadores/batista-ferreira.png' },
+  { nome: 'Play Kids Canindé', desc: 'Diversão infantil · Forródromo', logo: 'assets/patrocinadores/play-kids-caninde.png' },
+  { nome: 'Dom Pacas Barbearia', desc: 'Barbearia', logo: 'assets/patrocinadores/dom-pacas-barbearia.jpg' },
+  { nome: '77 Promoções', desc: 'Eventos e promoções', logo: 'assets/patrocinadores/77-promocoes.png' },
 ];
