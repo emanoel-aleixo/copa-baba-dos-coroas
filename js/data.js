@@ -119,27 +119,27 @@ const JOGOS = [
   // o admin lança pelo painel e o app atualiza sozinho.
   // RODADA 1 — 30/08 — ABERTURA: Brasil × França! (folga: Noruega)
   { id: 1, rodada: 1, fase: 'Pontos Corridos', data: '2026-08-30T06:00:00-03:00', casa: 'brasil', fora: 'franca', placar: null },
-  { id: 2, rodada: 1, fase: 'Pontos Corridos', data: '2026-08-30T09:00:00-03:00', casa: 'portugal', fora: 'argentina', placar: null },
+  { id: 2, rodada: 1, fase: 'Pontos Corridos', data: '2026-08-30T06:50:00-03:00', casa: 'portugal', fora: 'argentina', placar: null },
 
   // RODADA 2 — 06/09 — folga: França
   { id: 3, rodada: 2, fase: 'Pontos Corridos', data: '2026-09-06T06:00:00-03:00', casa: 'noruega', fora: 'portugal', placar: null },
-  { id: 4, rodada: 2, fase: 'Pontos Corridos', data: '2026-09-06T09:00:00-03:00', casa: 'argentina', fora: 'brasil', placar: null },
+  { id: 4, rodada: 2, fase: 'Pontos Corridos', data: '2026-09-06T06:50:00-03:00', casa: 'argentina', fora: 'brasil', placar: null },
 
   // RODADA 3 — 13/09 — folga: Portugal
   { id: 5, rodada: 3, fase: 'Pontos Corridos', data: '2026-09-13T06:00:00-03:00', casa: 'franca', fora: 'argentina', placar: null },
-  { id: 6, rodada: 3, fase: 'Pontos Corridos', data: '2026-09-13T09:00:00-03:00', casa: 'brasil', fora: 'noruega', placar: null },
+  { id: 6, rodada: 3, fase: 'Pontos Corridos', data: '2026-09-13T06:50:00-03:00', casa: 'brasil', fora: 'noruega', placar: null },
 
   // RODADA 4 — 20/09 — folga: Argentina
   { id: 7, rodada: 4, fase: 'Pontos Corridos', data: '2026-09-20T06:00:00-03:00', casa: 'portugal', fora: 'brasil', placar: null },
-  { id: 8, rodada: 4, fase: 'Pontos Corridos', data: '2026-09-20T09:00:00-03:00', casa: 'noruega', fora: 'franca', placar: null },
+  { id: 8, rodada: 4, fase: 'Pontos Corridos', data: '2026-09-20T06:50:00-03:00', casa: 'noruega', fora: 'franca', placar: null },
 
   // RODADA 5 — 27/09 — folga: Brasil
   { id: 9, rodada: 5, fase: 'Pontos Corridos', data: '2026-09-27T06:00:00-03:00', casa: 'argentina', fora: 'noruega', placar: null },
-  { id: 10, rodada: 5, fase: 'Pontos Corridos', data: '2026-09-27T09:00:00-03:00', casa: 'franca', fora: 'portugal', placar: null },
+  { id: 10, rodada: 5, fase: 'Pontos Corridos', data: '2026-09-27T06:50:00-03:00', casa: 'franca', fora: 'portugal', placar: null },
 
-  // FASE FINAL — 04/10
-  { id: 11, rodada: 6, fase: 'Disputa 3º lugar', data: '2026-10-04T06:00:00-03:00', casa: null, fora: null, placar: null, desc: '3º colocado × 4º colocado' },
-  { id: 12, rodada: 6, fase: 'GRANDE FINAL', data: '2026-10-04T09:00:00-03:00', casa: null, fora: null, placar: null, desc: '1º colocado × 2º colocado' },
+  // FASE FINAL — 11/10 (domingo)
+  { id: 11, rodada: 6, fase: 'Disputa 3º lugar', data: '2026-10-11T15:30:00-03:00', casa: null, fora: null, placar: null, desc: '3º colocado × 4º colocado' },
+  { id: 12, rodada: 6, fase: 'GRANDE FINAL', data: '2026-10-11T16:20:00-03:00', casa: null, fora: null, placar: null, desc: '1º colocado × 2º colocado' },
 ];
 
 // --- Fotos por jogo (venda com cadeado) ------------------------
