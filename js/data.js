@@ -175,4 +175,5 @@ const PATROCINADORES = [
   { nome: 'Play Kids Canindé', desc: 'Diversão infantil · Forródromo', logo: 'assets/patrocinadores/play-kids-caninde.png' },
   { nome: 'Dom Pacas Barbearia', desc: 'Barbearia', logo: 'assets/patrocinadores/dom-pacas-barbearia.jpg' },
   { nome: '77 Promoções', desc: 'Eventos e promoções', logo: 'assets/patrocinadores/77-promocoes.png' },
+  { nome: 'Diogo Rodrigues', desc: 'Consultor imobiliário · Creci-AL 5018', logo: 'assets/patrocinadores/diogo-rodrigues.png' },
 ];
