@@ -33,7 +33,7 @@ const SELECOES = [
     confirmada: true,
     historia: 'Os vikings do sertão! Frios no começo, mas quando esquentam viram avalanche. Prometem faro de gol de norte a sul do campo.',
     elenco: [
-      { n: 3, nome: 'Luas França', pos: 'ZAG', foto: 'assets/cards/noruega/luas-franca.jpg' },
+      { n: 3, nome: 'Lucas França', pos: 'ZAG', foto: 'assets/cards/noruega/luas-franca.jpg' },
       { n: 5, nome: 'Fábio Phillype', pos: 'ZAG', foto: 'assets/cards/noruega/fabio-phillype.jpg' },
       { n: 10, nome: 'Marcos Cabral', pos: 'ATA', foto: 'assets/cards/noruega/marcos-cabral.jpg' },
       { n: 15, nome: 'Galdene Souza', pos: 'GOL', foto: 'assets/cards/noruega/galdene.jpg' },
