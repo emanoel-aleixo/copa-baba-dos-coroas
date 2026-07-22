@@ -564,6 +564,8 @@ h1, h2, h3, .display {
 }
 .stats-mini .stat .v { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--ouro-claro); }
 .stats-mini .stat .r { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--texto-2); }
+/* selo de confirmada em linha própria: mantém todos os quadros do mesmo tamanho */
+.stats-mini .stat .ok { font-size: 11px; line-height: 1; margin-top: 5px; }
 
 /* ---------- Álbum ---------- */
 .album-progresso {

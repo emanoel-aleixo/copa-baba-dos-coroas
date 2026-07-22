@@ -29,6 +29,22 @@ const COPA = {
 // --- Seleções -------------------------------------------------
 const SELECOES = [
   {
+    id: 'noruega', nome: 'Noruega', bandeira: '🇳🇴', cor: '#EF2B2D', cor2: '#002868',
+    confirmada: true,
+    historia: 'Os vikings do sertão! Frios no começo, mas quando esquentam viram avalanche. Prometem faro de gol de norte a sul do campo.',
+    elenco: [
+      { n: 3, nome: 'Luas França', pos: 'ZAG', foto: 'assets/cards/noruega/luas-franca.jpg' },
+      { n: 5, nome: 'Fábio Phillype', pos: 'ZAG', foto: 'assets/cards/noruega/fabio-phillype.jpg' },
+      { n: 10, nome: 'Marcos Cabral', pos: 'ATA', foto: 'assets/cards/noruega/marcos-cabral.jpg' },
+      { n: 15, nome: 'Galdene Souza', pos: 'GOL', foto: 'assets/cards/noruega/galdene.jpg' },
+      { n: 29, nome: 'Andrezinho', pos: 'ZAG', foto: 'assets/cards/noruega/andrezinho.jpg' },
+      { n: 33, nome: 'Jackson Miranda', pos: 'ALA', foto: 'assets/cards/noruega/jackson-miranda.jpg' },
+      { n: 40, nome: 'Darlan Galdino', pos: 'LAT', foto: 'assets/cards/noruega/darlan-galdino.jpg' },
+      { n: 70, nome: 'Eduardo Aleixo', pos: 'ZAG', foto: 'assets/cards/noruega/eduardo-aleixo.jpg' },
+      { n: 77, nome: 'Marcelo Passos', pos: 'ATA', foto: 'assets/cards/noruega/marcelo-passos.jpg' },
+    ],
+  },
+  {
     id: 'brasil', nome: 'Brasil', bandeira: '🇧🇷', cor: '#FFDF00', cor2: '#009C3B',
     confirmada: true,
     historia: 'A seleção canarinho do baba. Fundada pelos coroas mais antigos do grupo, promete jogo bonito e resenha garantida no terceiro tempo.',
@@ -42,22 +58,6 @@ const SELECOES = [
       { n: 19, nome: 'Fábio Nunes', pos: 'ATA', foto: 'assets/cards/brasil/fabio-nunes.jpg' },
       { n: 22, nome: 'Ramigol', pos: 'ATA', foto: 'assets/cards/brasil/ramigol.jpg' },
       { n: 58, nome: 'Deliano', pos: 'VOL', foto: 'assets/cards/brasil/deliano.jpg' },
-    ],
-  },
-  {
-    id: 'noruega', nome: 'Noruega', bandeira: '🇳🇴', cor: '#EF2B2D', cor2: '#002868',
-    confirmada: true,
-    historia: 'Os vikings do sertão! Frios no começo, mas quando esquentam viram avalanche. Prometem faro de gol de norte a sul do campo.',
-    elenco: [
-      { n: 3, nome: 'Luas França', pos: 'ZAG', foto: 'assets/cards/noruega/luas-franca.jpg' },
-      { n: 5, nome: 'Fábio Phillype', pos: 'ZAG', foto: 'assets/cards/noruega/fabio-phillype.jpg' },
-      { n: 10, nome: 'Marcos Cabral', pos: 'ATA', foto: 'assets/cards/noruega/marcos-cabral.jpg' },
-      { n: 15, nome: 'Galdene Souza', pos: 'GOL', foto: 'assets/cards/noruega/galdene.jpg' },
-      { n: 29, nome: 'Andrezinho', pos: 'ZAG', foto: 'assets/cards/noruega/andrezinho.jpg' },
-      { n: 37, nome: 'Jackson Miranda', pos: 'ALA', foto: 'assets/cards/noruega/jackson-miranda.jpg' },
-      { n: 40, nome: 'Darlan Galdino', foto: 'assets/cards/noruega/darlan-galdino.jpg' },
-      { n: 70, nome: 'Eduardo Aleixo', foto: 'assets/cards/noruega/eduardo-aleixo.jpg' },
-      { n: 77, nome: 'Marcelo Passos', pos: 'ATA', foto: 'assets/cards/noruega/marcelo-passos.jpg' },
     ],
   },
   {

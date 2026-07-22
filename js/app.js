@@ -920,7 +920,8 @@ function renderHome() {
   $('#lideres').innerHTML = confirmadas.map((s) => `
     <div class="stat">
       <div class="v">${s.bandeira}</div>
-      <div class="r">${s.nome} ✅</div>
+      <div class="r">${s.nome}</div>
+      <div class="ok">✅</div>
     </div>`).join('') + (faltam > 0 ? `
     <div class="stat" style="opacity:.65">
       <div class="v">❔</div>
