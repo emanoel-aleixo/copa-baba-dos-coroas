@@ -921,6 +921,63 @@ h1, h2, h3, .display {
 }
 .aviso-fotos b { color: var(--ouro-claro); }
 
+/* ---------- Foto impressa na hora (serviço HUB) ---------- */
+.card-impressa {
+  background:
+    radial-gradient(340px 160px at 20% -20%, rgba(245, 200, 76, 0.18), transparent 70%),
+    linear-gradient(160deg, var(--card-2), var(--card));
+  border: 1px solid rgba(245, 200, 76, 0.45);
+  border-radius: 16px;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+}
+.card-impressa .ci-selo {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  color: #2b1d00;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.card-impressa h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.card-impressa h3 .ouro { color: var(--ouro-claro); }
+.card-impressa p { font-size: 13.5px; line-height: 1.65; color: var(--texto-2); }
+.card-impressa p b { color: #fff; }
+.card-impressa .ci-lista {
+  list-style: none;
+  margin: 12px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+}
+.card-impressa .ci-lista b { color: var(--ouro-claro); }
+.card-impressa .ci-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  color: #2b1d00;
+  background: linear-gradient(135deg, var(--ouro), var(--ouro-claro));
+  border-radius: 12px;
+  padding: 13px;
+}
+.card-impressa .ci-hub {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--texto-2);
+}
+.card-impressa .ci-hub b { color: #b98cff; }
+
 /* ---------- Vídeos ---------- */
 .card-video .thumb {
   aspect-ratio: 16 / 9;

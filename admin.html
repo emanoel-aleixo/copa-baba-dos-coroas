@@ -82,6 +82,10 @@
         <button class="btn-mini" style="margin-left:auto" onclick="sair()">Sair</button>
       </div>
 
+      <h2 class="titulo-secao">Acessos <span class="destaque">por dia</span> 📈</h2>
+      <p class="subtitulo">Quantos aparelhos abriram o app a cada dia (atualiza ao entrar).</p>
+      <div id="lista-acessos"></div>
+
       <h2 class="titulo-secao">Lançar <span class="destaque">resultados</span></h2>
       <p class="subtitulo">Preencha o placar, os gols e os cartões. Ao salvar, o app de todo mundo atualiza na hora.</p>
       <div id="lista-jogos-admin"></div>
@@ -105,8 +109,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="js/data.js?v=20260722g"></script>
-  <script src="js/supabase.js?v=20260722g"></script>
+  <script src="js/data.js?v=20260722h"></script>
+  <script src="js/supabase.js?v=20260722h"></script>
   <script>
     const $ = (s) => document.querySelector(s);
     const time = (id) => SELECOES.find((s) => s.id === id);
@@ -143,8 +147,45 @@
       $('#tela-admin').style.display = 'block';
       await carregarResultados();
       renderJogosAdmin();
+      await renderAcessos();
       await renderBolaoAdmin();
       await renderFotosAdmin();
+    }
+
+    // ---------- Acessos por dia ----------
+    async function renderAcessos() {
+      const box = $('#lista-acessos');
+      const dados = await buscarAcessos();
+      if (!dados) {
+        box.innerHTML = '<div class="card"><p class="subtitulo" style="margin:0">Contador ainda não instalado (rode supabase-acessos.sql) ou sem conexão.</p></div>';
+        return;
+      }
+      if (!dados.length) {
+        box.innerHTML = '<div class="card"><p class="subtitulo" style="margin:0">Ainda sem acessos registrados.</p></div>';
+        return;
+      }
+      const totalAberturas = dados.reduce((s, d) => s + Number(d.aberturas), 0);
+      const linhas = dados.map((d) => {
+        const dt = new Date(d.dia + 'T12:00:00').toLocaleDateString('pt-BR',
+          { weekday: 'short', day: '2-digit', month: '2-digit' });
+        return `<div style="display:flex; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="text-transform:capitalize">${dt}</span>
+          <span><b style="color:var(--ouro-claro)">${d.visitantes}</b> aparelhos · ${d.aberturas} aberturas</span>
+        </div>`;
+      }).join('');
+      box.innerHTML = `<div class="card">
+        <div style="display:flex; gap:12px; margin-bottom:6px">
+          <div style="flex:1; text-align:center">
+            <div style="font-size:28px; font-weight:800; color:var(--ouro-claro)">${totalAberturas}</div>
+            <small>aberturas no total</small>
+          </div>
+          <div style="flex:1; text-align:center">
+            <div style="font-size:28px; font-weight:800; color:var(--ouro-claro)">${dados.length}</div>
+            <small>${dados.length === 1 ? 'dia com acesso' : 'dias com acesso'}</small>
+          </div>
+        </div>
+        ${linhas}
+      </div>`;
     }
 
     // ---------- Resultados ----------

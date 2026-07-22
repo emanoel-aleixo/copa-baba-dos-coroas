@@ -1024,6 +1024,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   $('#btn-pacote').addEventListener('click', abrirPacote);
 
+  registrarAcesso(); // conta 1 acesso deste aparelho por dia (para o painel do admin)
+
   // Dados ao vivo do Supabase (resultados oficiais + fotos liberadas);
   // se conseguir, redesenha tudo por cima do modo local
   Promise.all([carregarAoVivo(), carregarPalpites()]).then(([ok]) => {

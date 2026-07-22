@@ -22,6 +22,30 @@ function deviceId() {
   return id;
 }
 
+// Registra 1 acesso deste aparelho por dia (para o contador do admin).
+// Silencioso: se o Supabase estiver fora, não atrapalha o app.
+async function registrarAcesso() {
+  if (!supa) return;
+  try {
+    const hoje = new Date().toISOString().slice(0, 10);
+    if (localStorage.getItem('acesso-registrado') === hoje) return; // já contou hoje
+    const { error } = await supa.from('copa_acessos').insert([{ device_id: deviceId() }]);
+    if (!error) localStorage.setItem('acesso-registrado', hoje);
+  } catch { /* ignora */ }
+}
+
+// Total de acessos por dia (só admin autenticado consegue ler).
+async function buscarAcessos() {
+  if (!supa) return null;
+  try {
+    const { data, error } = await supa.rpc('copa_acessos_por_dia');
+    if (error) return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
 // Busca resultados e fotos liberadas; aplica em cima dos dados locais.
 // Retorna true se conseguiu falar com o servidor.
 async function carregarAoVivo() {
