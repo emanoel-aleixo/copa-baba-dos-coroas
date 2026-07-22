@@ -167,6 +167,7 @@ const VIDEOS = [
 // --- Patrocinadores ---------------------------------------------
 const PATROCINADORES = [
   { nome: 'Prefeitura de Canindé de São Francisco', desc: 'Apoio institucional', logo: 'assets/patrocinadores/prefeitura.png' },
+  { nome: 'Copa de Vaquejada Brasil 2027', desc: 'Patrocinador', logo: 'assets/patrocinadores/copa-vaquejada.png' },
   { nome: 'Miltinho', desc: 'Patrocinador', logo: 'assets/patrocinadores/miltinho.png' },
   { nome: 'União Distribuidora', desc: 'Distribuidora · Canindé/SE', logo: 'assets/patrocinadores/uniao-distribuidora.png' },
   { nome: 'Mendonça Farma', desc: 'Farmácia', logo: 'assets/patrocinadores/mendonca-farma.jpg' },
