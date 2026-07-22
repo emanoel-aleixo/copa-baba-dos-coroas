@@ -7,7 +7,7 @@
 // Bump o CACHE ao mudar esta estratégia.
 // ============================================================
 
-const CACHE = 'copa-baba-v3';
+const CACHE = 'copa-baba-v4';
 const SHELL = [
   './',
   './index.html',

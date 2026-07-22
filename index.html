@@ -10,8 +10,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260722f">
+  <link rel="stylesheet" href="css/style.css?v=20260722g">
   <script>
+    // RESET DE LANÇAMENTO — roda antes de tudo, embutido no HTML (não depende do app.js
+    // estar atualizado no cache). Zera figurinhas/álbum/palpites de quem testou antes.
+    (function resetLancamentoInline() {
+      try {
+        var MARCA = 'reset-2026-08-lancamento';
+        if (localStorage.getItem('reset-marca') !== MARCA) {
+          ['album-copa', 'album-ultimo-pacote', 'bolao-palpites', 'bolao-nome',
+           'resultados-vistos', 'onboarding-visto', 'install-dispensado']
+            .forEach(function (k) { localStorage.removeItem(k); });
+          localStorage.setItem('reset-marca', MARCA);
+        }
+      } catch (e) { /* localStorage indisponível: segue normal */ }
+    })();
     // Captura o evento de instalação cedo (antes de disparar) e registra o app offline
     window.__promptInstalar = null;
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -26,6 +39,14 @@
       if (b) b.classList.remove('aberto');
     });
     if ('serviceWorker' in navigator) {
+      // Quando o novo cache assume o controle, recarrega UMA vez para pegar tudo fresco
+      // (garante que quem está com o app aberto receba a versão nova e o reset dispare).
+      let recarregando = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (recarregando) return;
+        recarregando = true;
+        location.reload();
+      });
       window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
     }
   </script>
@@ -35,7 +56,7 @@
 
     <!-- Topo -->
     <header class="topo">
-      <img class="escudo" src="assets/logo-copa.png?v=20260722f" alt="II Copa Baba dos Coroas"
+      <img class="escudo" src="assets/logo-copa.png?v=20260722g" alt="II Copa Baba dos Coroas"
            onerror="this.outerHTML='<div class=&quot;escudo&quot;>👑</div>'">
       <div class="titulos">
         <div class="assoc">Associação Baba dos Coroas</div>
@@ -288,8 +309,8 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
   <!-- Supabase (dados ao vivo + bolão geral) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="js/data.js?v=20260722f"></script>
-  <script src="js/supabase.js?v=20260722f"></script>
-  <script src="js/app.js?v=20260722f"></script>
+  <script src="js/data.js?v=20260722g"></script>
+  <script src="js/supabase.js?v=20260722g"></script>
+  <script src="js/app.js?v=20260722g"></script>
 </body>
 </html>
