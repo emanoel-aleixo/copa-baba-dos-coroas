@@ -41,7 +41,7 @@ const SELECOES = [
       { n: 33, nome: 'Jackson Miranda', pos: 'ALA', foto: 'assets/cards/noruega/jackson-miranda.jpg' },
       { n: 40, nome: 'Darlan Galdino', pos: 'LAT', foto: 'assets/cards/noruega/darlan-galdino.jpg' },
       { n: 70, nome: 'Eduardo Aleixo', pos: 'ZAG', foto: 'assets/cards/noruega/eduardo-aleixo.jpg' },
-      { n: 77, nome: 'Marcelo Passos', pos: 'ATA', foto: 'assets/cards/noruega/marcelo-passos.jpg' },
+      { n: 77, nome: 'Marcelo Pacas', pos: 'ATA', foto: 'assets/cards/noruega/marcelo-pacas.jpg' },
     ],
   },
   {
@@ -99,14 +99,14 @@ const SELECOES = [
     elenco: [
       { n: 1, nome: 'Gildevan', pos: 'GOL', foto: 'assets/cards/portugal/gildevan.jpg' },
       { n: 5, nome: 'Diogo', pos: 'ATA', foto: 'assets/cards/portugal/diogo.jpg' },
-      { n: 7, nome: 'Rogério' },
+      { n: 7, nome: 'Rogério da Silva', pos: 'ATA', foto: 'assets/cards/portugal/rogerio.jpg' },
       { n: 10, nome: 'Yuri', pos: 'MEI', foto: 'assets/cards/portugal/yuri.jpg' },
       { n: 11, nome: 'Neguinho', pos: 'MEI', foto: 'assets/cards/portugal/neguinho.jpg' },
       { n: 12, nome: 'Gilvan', pos: 'GOL', foto: 'assets/cards/portugal/gilvan.jpg' },
       { n: 14, nome: 'Johnisson', pos: 'PIV', foto: 'assets/cards/portugal/johnisson.jpg' },
       { n: 18, nome: 'Pacas', pos: 'ATA', foto: 'assets/cards/portugal/pacas.jpg' },
       { n: 77, nome: 'Valdir Andrade', pos: 'ZAG', foto: 'assets/cards/portugal/valdir-andrade.jpg' },
-      { n: 80, nome: 'Aelton' },
+      { n: 80, nome: 'Aelton', pos: 'MEI', foto: 'assets/cards/portugal/aelton.jpg' },
     ],
   },
 ];
