@@ -87,7 +87,7 @@ const SELECOES = [
       { n: 8, nome: 'Alex', pos: 'MEI', foto: 'assets/cards/argentina/alex.jpg' },
       { n: 9, nome: 'Ronaldo', pos: 'ATA', foto: 'assets/cards/argentina/ronaldo.jpg' },
       { n: 10, nome: 'Jonathan C.', pos: 'ATA', foto: 'assets/cards/argentina/jonathan.jpg' },
-      { n: 11, nome: 'Marquinho', pos: 'ZAG', foto: 'assets/cards/argentina/marquinho.jpg' },
+      { n: 11, nome: 'Marcos', pos: 'ZAG', foto: 'assets/cards/argentina/marquinho.jpg' },
       { n: 13, nome: 'Obede', pos: 'ATA', foto: 'assets/cards/argentina/obede.jpg' },
       { n: 22, nome: 'Gabriel/Bolsonaro', pos: 'ATA', foto: 'assets/cards/argentina/gabriel.jpg' },
       { n: 89, nome: 'Reinaldo', pos: 'GOL', foto: 'assets/cards/argentina/reinaldo.jpg' },
